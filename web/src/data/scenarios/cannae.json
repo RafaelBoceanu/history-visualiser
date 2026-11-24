@@ -1,0 +1,176 @@
+{
+  "schemaVersion": 1,
+  "kind": "battle",
+  "id": "cannae",
+  "title": "Battle of Cannae",
+  "date": { "year": -216, "month": 8, "day": 2 },
+  "description": "Stub scenario for schema testing. Numbers and positions are placeholders.",
+  "anchor": { "lat": 41.306, "lon": 16.132 },
+  "terrain": { "id": "cannae", "sizeMetres": 8000 },
+  "duration": 21600,
+  "sides": [
+    { "id": "rome", "name": "Roman Republic", "colour": "#b03030" },
+    { "id": "carthage", "name": "Carthage", "colour": "#2f5d9e" }
+  ],
+  "units": [
+    {
+      "id": "roman-infantry",
+      "sideId": "rome",
+      "name": "Roman and allied infantry",
+      "description": "Legions and allied infantry in deep formation",
+      "type": "heavy-infantry",
+      "initialStrength": {
+        "min": 55000,
+        "best": 70000,
+        "max": 80000,
+        "sourceIds": ["polybius", "livy"]
+      },
+      "losses": {
+        "min": 45000,
+        "best": 48000,
+        "max": 70000,
+        "sourceIds": ["polybius", "livy"]
+      },
+      "sourceIds": ["polybius"],
+      "keyframes": [
+        {
+          "t": 0,
+          "e": 0,
+          "n": 600,
+          "facing": 180,
+          "width": 1600,
+          "depth": 120,
+          "strength": 1,
+          "state": "formed"
+        },
+        {
+          "t": 1800,
+          "e": 0,
+          "n": 150,
+          "facing": 180,
+          "width": 1600,
+          "depth": 120,
+          "strength": 0.95,
+          "state": "engaged"
+        }
+      ]
+    },
+    {
+      "id": "carthaginian-centre",
+      "sideId": "carthage",
+      "name": "Gallic and Iberian infantry",
+      "description": "The centre of Hannibal's line",
+      "type": "heavy-infantry",
+      "initialStrength": { "best": 22000, "sourceIds": ["polybius"] },
+      "sourceIds": ["polybius"],
+      "keyframes": [
+        {
+          "t": 0,
+          "e": 0,
+          "n": -600,
+          "facing": 0,
+          "width": 1200,
+          "depth": 60,
+          "strength": 1,
+          "state": "formed"
+        },
+        {
+          "t": 1800,
+          "e": 0,
+          "n": 50,
+          "facing": 0,
+          "width": 1200,
+          "depth": 60,
+          "strength": 0.9,
+          "state": "engaged"
+        }
+      ]
+    },
+    {
+      "id": "numidian-cavalry",
+      "sideId": "carthage",
+      "name": "Numidian cavalry",
+      "description": "Light horsemen on the Carthaginian right",
+      "type": "light-cavalry",
+      "initialStrength": { "best": 4000, "sourceIds": ["polybius"] },
+      "sourceIds": ["polybius"],
+      "keyframes": [
+        {
+          "t": 0,
+          "e": 1500,
+          "n": -600,
+          "facing": 0,
+          "width": 400,
+          "depth": 40,
+          "strength": 1,
+          "state": "formed"
+        },
+        {
+          "t": 1800,
+          "e": 1800,
+          "n": 200,
+          "facing": 0,
+          "width": 400,
+          "depth": 40,
+          "strength": 1,
+          "state": "moving"
+        }
+      ]
+    },
+    {
+      "id": "hannibal",
+      "sideId": "carthage",
+      "name": "Hannibal",
+      "description": "Carthaginian commander, with the centre",
+      "type": "commander",
+      "initialStrength": { "best": 200, "sourceIds": [] },
+      "leadsUnitIds": ["carthaginian-centre"],
+      "sourceIds": ["polybius"],
+      "keyframes": [
+        {
+          "t": 0,
+          "e": 0,
+          "n": -700,
+          "facing": 0,
+          "width": 10,
+          "depth": 10,
+          "strength": 1,
+          "state": "formed"
+        }
+      ]
+    }
+  ],
+  "landmarks": [
+    {
+      "id": "aufidus",
+      "name": "River Aufidus",
+      "kind": "river",
+      "e": -2000,
+      "n": 0,
+      "sourceIds": ["polybius"]
+    },
+    {
+      "id": "cannae-town",
+      "name": "Cannae",
+      "kind": "settlement",
+      "e": 2500,
+      "n": 2500,
+      "sourceIds": []
+    }
+  ],
+  "events": [
+    {
+      "id": "lines-meet",
+      "t": 1800,
+      "title": "The lines meet",
+      "description": "The Roman infantry presses into the Carthaginian centre.",
+      "focus": { "e": 0, "n": 100, "distance": 2500 },
+      "unitIds": ["roman-infantry", "carthaginian-centre"],
+      "sourceIds": ["polybius"]
+    }
+  ],
+  "sources": [
+    { "id": "polybius", "citation": "Polybius, Histories 3.107 to 3.117" },
+    { "id": "livy", "citation": "Livy, Ab Urbe Condita 22.44 to 22.50" }
+  ]
+}
